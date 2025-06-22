@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbconfig = "mongodb+srv://subhajitbhattacharya08:5elq5hgbFk7ut26Z@namastenodejs.nihm1gk.mongodb.net/devTinder"
+@namastenodejs.nihm1gk.mongodb.net/devTinder"
 
 
 const connectDB = async () => {
