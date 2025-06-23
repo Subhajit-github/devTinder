@@ -7,6 +7,8 @@ const User = require('./models/user'); // Importing the User model
 const app = express(); //create an instance of express
 const port = 3000;
 
+app.use(express.json()); // Middleware to parse JSON bodies
+
 app.post("/signup", async(req, res) => {
   try {
     const userObj = {
