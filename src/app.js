@@ -54,10 +54,12 @@ app.post("/login", async(req, res) => {
     }
 
     // Compare the provided password with the stored hashed password
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    const isPasswordMatch = await user.validatePassword(password); // Validate the password using the method defined in the User model
+    
     if (!isPasswordMatch) {
-      //create a JWT token if the password matches
-      const token = await jwt.sign({ _id: user._id}, "secretKey");
+      // //create a JWT token if the password matches
+      const token = await user.getJWTToken(); // Sign the token with user ID and secret key
+
       res.cookie("token", token, { httpOnly: true }); // Set the token as a cookie
       return res.status(200).send("Login successful");
     } else {
