@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
     gender: {
         type: String
     },
+    photoURL: {
+        type: String,
+    }
 });
 
 userSchema.methods.getJWTToken = async function () {
@@ -36,6 +39,10 @@ userSchema.methods.getJWTToken = async function () {
 userSchema.methods.validatePassword = async function (passwordInputByUser) {
     const user = this;
     const isMatch = await bcrypt.compare(passwordInputByUser, user.password);
+    if (!isMatch) {
+        throw new Error("Invalid password");
+    }
+    
     return isMatch;
 }
 

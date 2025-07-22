@@ -20,6 +20,22 @@ const validateRequest = (req) => {
     }
 }
 
+const validateProfileUpdate = (updateData) => {
+    console.log("Validating profile update request body:", updateData); // Log the request body for debugging
+    try {
+        const allowedFields = ['firstName', 'lastName', 'email', 'age', 'gender', 'photoURL']; // Define allowed fields for profile update
+        Object.keys(updateData).forEach((field) => {
+            if (!allowedFields.includes(field)) {
+                throw new Error(`Field '${field}' is not allowed`);
+            }
+        });
+    } catch (error) {
+        throw new Error('Invalid profile update data');
+        
+    }
+}
+
 module.exports = {
     validateRequest,
+    validateProfileUpdate,
 };
