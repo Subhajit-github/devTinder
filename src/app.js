@@ -4,8 +4,8 @@ const cookieParser = require('cookie-parser');
 require("./config/dbconfig"); // Importing the database configuration
 const profileRouter = require('./routers/profileRouter'); // Importing the profile router
 const authRouter = require('./routers/authRouter'); // Importing the auth router
-const connectionRequestRouter = require('./routers/requestRouter'); // Importing the connection request router
-const userRequestRouter = require('./routers/userRequestRouter'); // Importing the user request router
+const connectionRequestRouter = require('./routers/connectionRequestRouter'); // Importing the connection request router
+const userRouter = require('./routers/userRouter'); // Importing the user request router
 
 const app = express(); //create an instance of express
 const port = 3000;
@@ -15,8 +15,8 @@ app.use(cookieParser()); // Middleware to parse cookies
 
 app.use('/api/auth', authRouter); // Mounting the auth router
 app.use('/api/profile', profileRouter); // Mounting the profile router
-app.use('/api/connection', connectionRequestRouter); // Mounting the connection request router
-app.use('/api/user', userRequestRouter); // Mounting the user request router
+app.use('/api/request', connectionRequestRouter); // Mounting the connection request router
+app.use('/api/user', userRouter); // Mounting the user router
 
 async function startServer() {
   try {
